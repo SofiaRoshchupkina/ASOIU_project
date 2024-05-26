@@ -1,0 +1,103 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="ASOIU4.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Ресторан</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3; /* Нежно зеленый */
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #ffffff; /* Белый */
+            padding: 10px;
+            text-align: center;
+            border-bottom: 2px solid #f8b195; /* Персиковый */
+            position: relative;
+        }
+        .menu {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .menu a {
+            display: inline-block;
+            margin-right: 20px;
+            text-decoration: none;
+            color: #333333;
+            transition: color 0.3s; /* Плавное изменение цвета при наведении */
+        }
+        .menu a:hover {
+            color: #f8b195; /* Персиковый */
+        }
+        .content {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .loggedInContent {
+            display: none;
+        }
+        /* Стили для кнопок */
+        .btn {
+            background-color: #8fcfd1; /* Нежно зеленый */
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Плавное изменение цвета фона при наведении */
+            margin-right: 10px; /* Добавлен отступ между кнопками */
+        }
+        .btn:hover {
+            background-color: #f8b195; /* Персиковый */
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="header">
+            <h1>Ресторан</h1>
+            <div class="buttons">
+                <% if (Session["LoggedInUser"] == null && Session["AdminUser"] == null) { %>
+                    <asp:LinkButton ID="auth" runat="server" OnClick="auth_Click" CssClass="btn">Авторизация</asp:LinkButton>
+                    <asp:LinkButton ID="register" runat="server" OnClick="register_Click" CssClass="btn">Регистрация</asp:LinkButton>
+                <% } else if (Session["AdminUser"] != null) { %>
+                    <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click" CssClass="btn">Выход</asp:LinkButton>
+                    <asp:LinkButton ID="btnAdminDashboard" runat="server" OnClick="btnAdminDashboard_Click" CssClass="btn">Админ Панель</asp:LinkButton>
+                <% } else { %>
+                    <asp:LinkButton ID="LinkButton1" runat="server" OnClick="btnLogout_Click" CssClass="btn">Выход</asp:LinkButton>
+                    <asp:LinkButton ID="btnUserCabinet" runat="server" OnClick="btnUserCabinet_Click" CssClass="btn"><i class="fas fa-user-circle"></i></asp:LinkButton>
+                <% } %>
+            </div>
+            <div class="menu">
+                <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton1_Click">Меню</asp:LinkButton>
+                <asp:LinkButton ID="LinkButton3" runat="server" OnClick="LinkButton2_Click">Новости</asp:LinkButton>
+                <% if (Session["LoggedInUser"] != null) { %>
+                    <asp:LinkButton ID="LinkButton4" runat="server" OnClick="LinkButton3_Click">Бронирование</asp:LinkButton>
+                <% } %>
+                <asp:LinkButton ID="LinkButton5" runat="server" OnClick="LinkButton4_Click">Наши филиалы</asp:LinkButton>
+            </div>
+        </div>
+        <div class="content">
+            <div class="loggedInContent" id="divLoggedInContent">
+                <!-- Содержимое, отображаемое только для авторизованных пользователей -->
+                Добро пожаловать, авторизованный пользователь!
+            </div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

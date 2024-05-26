@@ -1,0 +1,82 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site2.master.cs" Inherits="ASOIU4.Site2" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style2 {
+            text-align: center;
+            background-color: #333333;
+        }
+        .auto-style3 {
+            width: 363px;
+            height: 26px;
+            text-align: center;
+        }
+        .auto-style4 {
+            font-family: Dubai;
+            font-weight: bold;
+            font-size: xx-large;
+            text-decoration: blink;
+            color: #FFFFFF;
+        }
+        .auto-style5 {
+            width: 363px;
+            background-color: #333333;
+        }
+        .auto-style6 {
+            width: 423px;
+            height: 26px;
+            text-align: center;
+        }
+        .auto-style7 {
+            height: 26px;
+            text-align: center;
+        }
+        .auto-style8 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        
+        <table class="auto-style1">
+            <tr>
+                <td class="auto-style5">
+                     <asp:Image ID="Image1" runat="server" Height="188px" Width="360px" ImageURL ="img/logo.jpg" CssClass="auto-style8"/>
+                </td>
+                <td class="auto-style2" colspan="2">
+                    <asp:Label ID="Label1" runat="server" CssClass="auto-style4" Text="Библиотека"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style3">
+                    <asp:LinkButton ID="LinkButton3" runat="server">Редактировать новость</asp:LinkButton>
+                </td>
+                <td class="auto-style6">
+                    <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Добавить книгу</asp:LinkButton>
+                </td>
+                <td class="auto-style7">
+                    <asp:LinkButton ID="LinkButton2" runat="server">Подтвердить бронь</asp:LinkButton>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+        </table>
+        
+    </form>
+</body>
+</html>
